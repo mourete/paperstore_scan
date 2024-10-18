@@ -1,0 +1,66 @@
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://java.sun.com/jsf/html"
+             xmlns:ui="http://java.sun.com/jsf/facelets"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:f="http://java.sun.com/jsf/core"
+             xmlns:pe="http://primefaces.org/ui/extensions" 
+
+             >
+             
+    <f:view >        
+ 
+ 
+ 
+ 
+    <h:panelGrid rendered="#{not empty mbCaja.carpeta}"  columns="2"  style="vertical-align:top;"     >
+    
+               <h:panelGrid    cellpadding="4"  cellspacing="4" columns="2" style="text-align:left;vertical-align:bottom;width:100%;"> 
+               
+                     <h:outputText  styleClass="qaLabelForm"   value="Código barras carpeta:" /> 
+                     <h:outputText   styleClass="qaTextForm"  value="#{mbCaja.carpeta.codigoBarras}"   />               
+               
+                     <h:outputText   styleClass="qaLabelForm"   value="Campo alfa 1" /> 
+                     <h:outputText    styleClass="qaTextForm"  value="#{mbCaja.carpeta.alfa1}"   />
+                     
+                     <h:outputText   styleClass="qaLabelForm"  value="Campo alfa 2" /> 
+                     <h:outputText   styleClass="qaTextForm"   value="#{mbCaja.carpeta.alfa2}"   />
+                     
+                     <h:outputText  styleClass="qaLabelForm"  value="Campo alfa 3" /> 
+                     <h:outputText   styleClass="qaTextForm"   value="#{mbCaja.carpeta.alfa3}"   />
+                     
+                     <h:outputText  styleClass="qaLabelForm"  value="Campo alfa 4" /> 
+                     <h:outputText   styleClass="qaTextForm"  value="#{mbCaja.carpeta.alfa4}"   />
+                     
+                     <h:outputText  styleClass="qaLabelForm"  value="Campo alfa 5" /> 
+                     <h:outputText  styleClass="qaTextForm"   value="#{mbCaja.carpeta.alfa5}"   />
+                     
+                     <h:outputText  styleClass="qaLabelForm"  value="Campo entero 1" />                         
+                     <h:outputText   styleClass="qaTextForm"  value="#{mbCaja.carpeta.int1}"   />  
+                       
+                     <h:outputText  styleClass="qaLabelForm"  value="Campo entero 2" />                         
+                     <h:outputText   styleClass="qaTextForm"  value="#{mbCaja.carpeta.int2}"   />  
+
+                     <h:outputText  styleClass="qaLabelForm"  value="Campo entero 3" />                         
+                     <h:outputText   styleClass="qaTextForm"  value="#{mbCaja.carpeta.int3}"    />  
+                                                     
+                                                      
+               <h:outputText  styleClass="qaLabelForm"  value="Campo Fecha uno" />    
+               <h:outputText   styleClass="qaTextForm"     value="#{mbCaja.carpeta.date1}"    />                  
+               
+ 
+               <h:outputText  styleClass="qaLabelForm"  value="Campo Fecha dos" />   
+              <h:outputText    styleClass="qaTextForm"   value="#{mbCaja.carpeta.date2}" />                  
+              
+ 
+ 
+ 
+               
+               </h:panelGrid>                 
+ 
+    
+    
+    </h:panelGrid>
+ 
+ </f:view>
+
+</ui:fragment>

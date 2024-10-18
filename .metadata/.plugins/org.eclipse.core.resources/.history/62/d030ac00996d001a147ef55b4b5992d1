@@ -1,0 +1,5 @@
+package com.em.proyscan.web.be.spring;
+
+public class AppContext {
+
+}

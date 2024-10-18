@@ -1,0 +1,36 @@
+package com.em.proyscan.web.be.hlp;
+
+import com.em.proyscan.web.be.app.Constants;
+
+public class HlpApp {
+	
+	public static String getURLResources() {
+		
+		String config=Constants.APP_SCAN_HOME+ "/"+  
+		System.out.println("config filename is : " + config);
+		Properties prop = new Properties();
+		InputStream inStream = null;
+		try {
+		    inStream = getClass().getClassLoader().getResourceAsStream(config);
+		    props.load(inStream);
+		} finally {
+		    if (inStream != null)
+		        inStream.close();
+		}
+		String name=prop.getProperty("Name");
+		String Execute_Time=prop.getProperty("Execute_Time");
+		int execute_time=Integer.parseInt(Execute_Time);
+		String Location=prop.getProperty("Location");
+		}
+		}		
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+
+}

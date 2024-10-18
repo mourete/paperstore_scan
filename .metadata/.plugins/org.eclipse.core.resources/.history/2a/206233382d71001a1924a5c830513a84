@@ -1,0 +1,219 @@
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://java.sun.com/jsf/html"
+             xmlns:ui="http://java.sun.com/jsf/facelets"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:f="http://java.sun.com/jsf/core"
+             xmlns:pe="http://primefaces.org/ui/extensions" 
+
+             >
+             
+    <f:view >        
+ 
+ 
+ 
+    <h:form id="fr_search_caja" >
+  <h:panelGrid  rendered="#{not empty mbCaja.searchCaja}" columns="1"  style="width:515px;vertical-align:top;"      >
+    <h:panelGrid columns="2"  style="width:515px;vertical-align:top;"    >
+    
+    
+    <p:outputLabel   value="Buscar:" />
+        <p:selectOneRadio id="console" value="#{mbCaja.tipoBusquedaAvanzada}"     >
+            
+            <f:selectItem itemLabel="Caja"   itemValue="1" />
+            <f:selectItem itemLabel="Carpeta" itemValue="2" />
+            <p:ajax process="@this" update="@form" listener="#{mbCaja.selectTipoBusqueda}"/>
+        </p:selectOneRadio>
+        
+                 <h:panelGrid  columns="2"  rendered="#{mbCaja.tipoBusquedaAvanzada eq 1  }"   >		
+              
+               
+                     <h:outputText value="Campo alfa 1" /> 
+                     <h:inputText  value="#{mbCaja.searchCaja.alfa1}"   />
+                     
+                     <h:outputText value="Campo alfa 2" /> 
+                     <h:inputText  value="#{mbCaja.searchCaja.alfa2}"   />
+                     
+                     <h:outputText value="Campo alfa 3" /> 
+                     <h:inputText  value="#{mbCaja.searchCaja.alfa3}"   />
+                     
+                     <h:outputText value="Campo alfa 4" /> 
+                     <h:inputText  value="#{mbCaja.searchCaja.alfa4}"   />
+                     
+                     <h:outputText value="Campo alfa 5" /> 
+                     <h:inputText  value="#{mbCaja.searchCaja.alfa5}"   />
+                     
+                     <h:outputText value="Campo entero 1" />                         
+                     <p:inputNumber  value="#{mbCaja.searchCaja.int1}"   decimalPlaces="0" thousandSeparator=""  decimalSeparator=""   />  
+                       
+                     <h:outputText value="Campo entero 2" />                         
+                     <p:inputNumber  value="#{mbCaja.searchCaja.int2}"   decimalPlaces="0" thousandSeparator=""  decimalSeparator=""   />  
+
+                     <h:outputText value="Campo entero 3" />                         
+                     <p:inputNumber  value="#{mbCaja.searchCaja.int3}"   decimalPlaces="0" thousandSeparator=""  decimalSeparator=""   />  
+                                                     
+ 
+                 </h:panelGrid>
+                 
+                 
+                 <h:panelGrid  columns="2"  rendered="#{mbCaja.tipoBusquedaAvanzada eq 2  }"   >		
+              
+               
+                     <h:outputText value="Campo alfa 1" /> 
+                     <h:inputText  value="#{mbCaja.searchCarpeta.alfa1}"   />
+                     
+                     <h:outputText value="Campo alfa 2" /> 
+                     <h:inputText  value="#{mbCaja.searchCarpeta.alfa2}"   />
+                     
+                     <h:outputText value="Campo alfa 3" /> 
+                     <h:inputText  value="#{mbCaja.searchCarpeta.alfa3}"   />
+                     
+                     <h:outputText value="Campo alfa 4" /> 
+                     <h:inputText  value="#{mbCaja.searchCarpeta.alfa4}"   />
+                     
+                     <h:outputText value="Campo alfa 5" /> 
+                     <h:inputText  value="#{mbCaja.searchCarpeta.alfa5}"   />
+                     
+                     <h:outputText value="Campo entero 1" />                         
+                     <p:inputNumber  value="#{mbCaja.searchCarpeta.int1}"   decimalPlaces="0" thousandSeparator=""  decimalSeparator=""   />  
+                       
+                     <h:outputText value="Campo entero 2" />                         
+                     <p:inputNumber  value="#{mbCaja.searchCarpeta.int2}"   decimalPlaces="0" thousandSeparator=""  decimalSeparator=""   />  
+
+                     <h:outputText value="Campo entero 3" />                         
+                     <p:inputNumber  value="#{mbCaja.searchCarpeta.int3}"   decimalPlaces="0" thousandSeparator=""  decimalSeparator=""   />  
+                                                     
+ 
+                 </h:panelGrid>
+                 
+ 
+    
+    
+    </h:panelGrid>
+    
+    
+	   <h:panelGrid  columns="2"  >		   
+		     <p:commandButton   value="Buscar" style="margin-right:3px;"     >
+                  <p:ajax   process="@form"   listener="#{mbCaja.busquedaAvanzada}"   update="@form"   >
+                  </p:ajax>  
+                    
+			</p:commandButton>    						
+		     <p:commandButton    onclick="PF('dlgSearchCaja').hide()"    value="Cancelar" style="margin-right:3px;"     />
+		   
+	   </h:panelGrid>             
+    
+    
+    
+    
+    						<h:panelGrid  rendered="#{mbCaja.tipoBusquedaAvanzada eq 1}"   cellpadding="2" columns="1" style="text-align:left;vertical-align:bottom;"> 
+							
+							
+								<p:dataTable  styleClass="mydt"   rendered="#{not empty mbCaja.cajasEncontradas}"     var="caj"  value="#{mbCaja.cajasEncontradas }"   sortMode="multiple"   style="vertical-align:top;" 
+								        rowKey="#{caj.cajaOID}"  selectionMode="single"    paginator="true"  rows="10"   selection="#{mbCaja.selectedCaja}"    >
+									<f:facet name="header"   style="text-align:left;"  >
+										CAJAS ENCONTRADAS
+									</f:facet>
+		 			
+									<p:ajax event="rowSelect" listener="#{mbCaja.selectCaja}" update="fr_caja" process="@form"     onclick="PF('dlgSearchCaja').hide()"    />	
+									
+									<p:column headerText="Código"        >			             
+										<h:outputText value="#{caj.codigoBarras}"  style="text-align:left;"  />                                   
+									</p:column>   
+									
+									<p:column headerText="Alfa 1"        >			             
+										<h:outputText value="#{caj.alfa1}"  style="text-align:left;"  />                                   
+									</p:column>   									
+									
+									<p:column headerText="Alfa 2"        >			             
+										<h:outputText value="#{caj.alfa2}"  style="text-align:left;"  />                                   
+									</p:column>   		
+									
+									<p:column headerText="Alfa 3"        >			             
+										<h:outputText value="#{caj.alfa3}"  style="text-align:left;"  />                                   
+									</p:column>   																
+						 				
+						 
+								</p:dataTable>				
+							
+							
+							
+							
+							</h:panelGrid>    
+    
+    
+    
+    
+        						<h:panelGrid  rendered="#{mbCaja.tipoBusquedaAvanzada eq 2}"   cellpadding="2" columns="1" style="text-align:left;vertical-align:bottom;"> 
+							
+							
+								<p:dataTable  styleClass="mydt"   rendered="#{not empty mbCaja.carpetasEncontradas}"     var="carp"  value="#{mbCaja.carpetasEncontradas }"   sortMode="multiple"   style="vertical-align:top;" 
+								        rowKey="#{carp.carpetaOID}"  selectionMode="single"    paginator="true"  rows="10"   selection="#{mbCaja.selectedCarpetaAvanzada}"    >
+									<f:facet name="header"   style="text-align:left;"  >
+										CARPETAS ENCONTRADAS
+									</f:facet>
+									
+									<p:ajax event="rowSelect" listener="#{mbCaja.refreshCarepta}" update="@form" process=" @form " />
+									<p:column headerText="Acción"  style="width:55px;text-align:center;"      >	
+									
+									     
+									     
+									     
+											 <p:commandLink  style="margin-right:4px;"   title="Detalles de la caja"   action="#{mbCaja.doSelectCaja(carp)}" update="fr_caja" process="@form"     onclick="PF('dlgSearchCaja').hide()"     >  
+											                
+											              					 			                  										             
+											               <h:graphicImage width="20" height="18"  url="../resources/img/edit20.png" ></h:graphicImage>                                     
+											 </p:commandLink >   
+											 
+											 <p:commandLink  style="margin-right:4px;"   title="Detalles de la carpeta" 
+											        action="#{mbCaja.doSelectCarpeta(carp)}" update="fr_caja dlgCarpetaCajaPanel" process="@form"     onclick="PF('dlgSearchCaja').hide()" 
+											  
+											   >  
+											            					 			                  										             
+											               <h:graphicImage width="20" height="18"  url="../resources/img/edit20.png" ></h:graphicImage>                                     
+											 </p:commandLink >   											 
+											 
+							 
+									     
+									   
+									
+									
+										 
+											 				
+			                        </p:column>												
+		 			
+									
+									
+									<p:column headerText="Código"        >			             
+										<h:outputText value="#{carp.codigoBarras}"  style="text-align:left;"  />                                   
+									</p:column>   
+									
+									<p:column headerText="Alfa 1"        >			             
+										<h:outputText value="#{carp.alfa1}"  style="text-align:left;"  />                                   
+									</p:column>   									
+									
+									<p:column headerText="Alfa 2"        >			             
+										<h:outputText value="#{carp.alfa2}"  style="text-align:left;"  />                                   
+									</p:column>   		
+									
+									<p:column headerText="Alfa 3"        >			             
+										<h:outputText value="#{carp.alfa3}"  style="text-align:left;"  />                                   
+									</p:column>   																
+						 				
+						 
+								</p:dataTable>				
+							
+							
+							
+							
+							</h:panelGrid>    
+    
+    
+    
+    
+      </h:panelGrid>
+    
+    </h:form>
+  
+
+ </f:view>
+
+</ui:fragment>

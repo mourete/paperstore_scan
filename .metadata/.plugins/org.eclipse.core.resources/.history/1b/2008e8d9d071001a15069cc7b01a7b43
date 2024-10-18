@@ -1,0 +1,80 @@
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://java.sun.com/jsf/html"
+             xmlns:ui="http://java.sun.com/jsf/facelets"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:f="http://java.sun.com/jsf/core"
+             xmlns:pe="http://primefaces.org/ui/extensions" 
+
+             >
+             
+    <f:view >        
+ 
+ 
+ 
+  <h:form id="fr_carpeta_caja"  >
+    <h:panelGrid rendered="#{not empty mbCaja.carpeta}"  columns="2"  style="vertical-align:top;"     >
+    
+               <h:panelGrid    cellpadding="2" columns="2" style="text-align:left;vertical-align:bottom;width:100%;"> 
+               
+                     <h:outputText value="#{msg['message.edit_carp.codigo']}" /> 
+                     <h:outputText  value="#{mbCaja.carpeta.codigoBarras}"   />               
+               
+                     <h:outputText  value="#{msg['message.edit_carp.etiq_alfa1']}"  /> 
+                     <h:inputText  value="#{mbCaja.carpeta.alfa1}"   />
+                     
+                     <h:outputText  value="#{msg['message.edit_carp.etiq_alfa2']}"  /> 
+                     <h:inputText  value="#{mbCaja.carpeta.alfa2}"   />
+                     
+                     <h:outputText  value="#{msg['message.edit_carp.etiq_alfa3']}"  /> 
+                     <h:inputText  value="#{mbCaja.carpeta.alfa3}"   />
+                     
+                     <h:outputText  value="#{msg['message.edit_carp.etiq_alfa4']}"  /> 
+                     <h:inputText  value="#{mbCaja.carpeta.alfa4}"   />
+                     
+                     <h:outputText  value="#{msg['message.edit_carp.etiq_alfa5']}"  /> 
+                     <h:inputText  value="#{mbCaja.carpeta.alfa5}"   />
+                     
+                     <h:outputText  value="#{msg['message.edit_carp.etiq_ent1']}"  />                         
+                     <p:inputNumber  value="#{mbCaja.carpeta.int1}"   decimalPlaces="0" thousandSeparator=""  decimalSeparator=""   />  
+                       
+                     <h:outputText  value="#{msg['message.edit_carp.etiq_ent2']}"  />                         
+                     <p:inputNumber  value="#{mbCaja.carpeta.int2}"   decimalPlaces="0" thousandSeparator=""  decimalSeparator=""   />  
+
+                     <h:outputText  value="#{msg['message.edit_carp.etiq_ent3']}"  />                         
+                     <p:inputNumber  value="#{mbCaja.carpeta.int3}"   decimalPlaces="0" thousandSeparator=""  decimalSeparator=""   />  
+                                                     
+                                                      
+               <h:outputText  value="#{msg['message.edit_carp.etiq_fec1']}"  />    
+               <p:calendar     value="#{mbCaja.carpeta.date1}"  showOn="button"         >                  
+               </p:calendar>
+ 
+               <h:outputText  value="#{msg['message.edit_carp.etiq_fec2']}"  />   
+               <p:calendar     value="#{mbCaja.carpeta.date2}"  showOn="button"        >                  
+               </p:calendar>
+               
+               
+               
+		   <h:panelGrid  columns="2"  >		   
+			     <p:commandButton   value="Guardar" style="margin-right:3px;"     >
+	                  <p:ajax   process="@form"   listener="#{mbCaja.guardarCarpeta}"   update="@form"   >
+	                  </p:ajax>  
+	                    
+				</p:commandButton>    						
+			     <p:commandButton    onclick="PF('dlgCarpetaCaja').hide()"    value="Cancelar" style="margin-right:3px;"     />
+ 		   
+		   </h:panelGrid>               
+ 
+ 
+ 
+               
+               </h:panelGrid>                 
+ 
+    
+    
+    </h:panelGrid>
+    
+    </h:form>
+ 
+ </f:view>
+
+</ui:fragment>

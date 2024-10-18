@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="javax.faces.bean.ManagedBean"/>
+<fullyQualifiedTypeName name="javax.faces.bean.ViewScoped"/>
+<fullyQualifiedTypeName name="com.em.proyscan.web.be.dao.DAOCaja"/>
+<fullyQualifiedTypeName name="javax.faces.bean.ManagedProperty"/>
+<fullyQualifiedTypeName name="com.em.proyscan.web.be.service.SRVCaja"/>
+<fullyQualifiedTypeName name="javax.annotation.PostConstruct"/>
+<fullyQualifiedTypeName name="com.em.proyscan.web.be.model.Caja"/>
+<fullyQualifiedTypeName name="java.sql.Connection"/>
+<fullyQualifiedTypeName name="java.sql.CallableStatement"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="java.sql.Types"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.sql.Statement"/>
+<fullyQualifiedTypeName name="java.sql.ResultSet"/>
+<fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
+<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+<fullyQualifiedTypeName name="com.em.proyscan.web.be.dao.DAOCarpeta"/>
+<fullyQualifiedTypeName name="com.em.proyscan.web.be.service.SRVCarpeta"/>
+<fullyQualifiedTypeName name="com.em.proyscan.web.be.model.Carpeta"/>
+<fullyQualifiedTypeName name="org.primefaces.PrimeFaces"/>
+<fullyQualifiedTypeName name="java.util.Properties"/>
+<fullyQualifiedTypeName name="java.io.InputStream"/>
+<fullyQualifiedTypeName name="java.io.FileInputStream"/>
+<fullyQualifiedTypeName name="com.em.proyscan.web.be.hlp.HlpApp"/>
+<fullyQualifiedTypeName name="com.em.proyscan.web.be.model.search.SearchCaja"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="com.em.proyscan.web.be.app.Constants"/>
+<fullyQualifiedTypeName name="com.em.proyscan.web.be.model.search.SearchCarpeta"/>
+</qualifiedTypeNameHistroy>

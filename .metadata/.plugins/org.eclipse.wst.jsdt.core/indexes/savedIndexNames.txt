@@ -1,0 +1,9 @@
+INDEX VERSION 1.4+C:\Users\PROYECTOS\Google Drive\Proyecto\SoftPath\Sistemas\Digitalización\Sistema\proyscanweb\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+452123130.index
+2950676009.index
+967533681.index
+443493297.index
+2447724573.index
+2463871987.index
+1369956670.index
+1289346121.index

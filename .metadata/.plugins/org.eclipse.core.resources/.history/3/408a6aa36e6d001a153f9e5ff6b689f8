@@ -1,0 +1,258 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	 >
+ 
+ <h:head>
+ 
+    <h:outputStylesheet   library="default"     name="css/main.css" /> 
+ 
+ </h:head>
+  
+ <h:body>
+
+ 
+             
+   <f:view >               
+ 
+ 
+     
+ <h:form id="fr_caja"  >
+ 
+ 
+
+ 
+ 
+  
+         <h:panelGrid    cellpadding="1" columns="6" style="text-align:left;vertical-align:bottom;width:100%;">   
+            <h:panelGrid    cellpadding="0" cellspacing="0"  columns="1" style="text-align:left;vertical-align:bottom;">  
+                 <h:panelGrid    cellpadding="0" cellspacing="0"  columns="1" style="text-align:left;vertical-align:bottom;">  
+			        <h:outputText   value="Código de caja o de carpeta" />
+			     </h:panelGrid>
+			     <h:panelGrid    cellpadding="0" cellspacing="0"  columns="4" style="text-align:left;vertical-align:bottom;">    
+					      <p:inputText   size="15"  value="#{mbCaja.codigoBarras}" />
+					        
+					      <p:commandButton value="Buscar" >
+								 <p:ajax  process="fr_caja"     update="fr_caja"  listener="#{mbCaja.searchByCodigo}"    >                  
+							 </p:ajax>
+				                        
+				          </p:commandButton> 		
+				          
+					      <p:commandButton value="Busqueda avanzada ..."    oncomplete="PF('dlgSearchCaja').show()"     >
+								 <p:ajax  process="fr_caja"     update="fr_caja"  listener="#{mbCaja.initSearch}"    >                  
+							 </p:ajax>
+				                        
+				          </p:commandButton> 	
+		          
+		          </h:panelGrid>	          	        
+		        
+		    </h:panelGrid>    
+		 
+		     
+	   
+	                          
+ 		     
+		   </h:panelGrid>  
+		   
+		   
+		   
+		    			 <h:panelGrid id="panelMsg"   cellpadding="0"  cellspacing="0"  >
+						     <h:panelGrid   rendered="#{not empty mbCaja.message}"  columns="1"  cellpadding="0"  cellspacing="0"   style="margin-bottom:0px;color:#ff0000;">
+						         <h:outputText value="#{mbCaja.message}"   style="color:#000000;font-size:15px;font-face:Arial;font-weight:bold;"    />
+						     </h:panelGrid>
+						  </h:panelGrid>       
+					      
+ 
+ 
+ 
+          <h:panelGrid  rendered="#{not empty mbCaja.caja}"   cellpadding="1" columns="1" style="text-align:left;vertical-align:bottom;">
+ 
+                   
+                      
+                   
+ 
+                   
+                   <h:panelGrid  id="panCarpetas"   cellpadding="2" columns="1" style="text-align:left;vertical-align:bottom;width:500px;"> 
+						<h:panelGrid    cellpadding="2" columns="2" style="text-align:left;vertical-align:bottom;"> 
+							
+							<h:panelGrid    cellpadding="2" columns="1" style="text-align:left;vertical-align:top;"> 
+							     <ui:include src="carpeta_caja.xhtml" />  
+							</h:panelGrid>
+							
+							<h:panelGrid    cellpadding="1" columns="1" style="text-align:left;vertical-align:top;">
+								<p:dataTable  styleClass="mydt"   rendered="#{not empty mbCaja.caja.carpetas}"     var="fld"  value="#{mbCaja.caja.carpetas }"   sortMode="multiple"   style="vertical-align:top;" 
+								       selection="#{mbCaja.selectedCarpeta}" rowKey="#{fld.carpetaOID}"  selectionMode="single"    paginator="true"  rows="10"    >
+									<f:facet name="header"   style="text-align:left;"  >
+										CARPETAS DE LA CAJA
+									</f:facet>
+									
+									<p:ajax event="rowSelect" listener="#{mbCaja.refreshCarepta}" update="fr_caja:imgFirstPage" process=" fr_caja:panCarpetas" />
+									
+									<p:column headerText="Acción"  style="width:55px;text-align:center;"      >	
+											 <p:commandLink    title="Detalles de la carpeta">  
+											                
+											             	<p:ajax   process="@this"     oncomplete="PF('dlgCarpetaCaja').show()"     update="fr_carpeta_caja fr_caja:panCarpetas "  listener="#{mbCaja.editCarpeta(fld)}"   >                  
+											                  </p:ajax>							 			                  										             
+											               <h:graphicImage width="16" height="16"  url="../resources/img/edit20.png" ></h:graphicImage>                                     
+											 </p:commandLink >   				
+			                        </p:column>					
+										
+									
+									<p:column headerText="Código"   style="width:110px;text-align:center;"       >			             
+										<h:outputText value="#{fld.codigoBarras}"  style="text-align:left;"  />                                   
+									</p:column>   
+									
+									<p:column headerText="Documento"        >	
+									      	
+									    <h:outputLink   target="pdf_view"    value="#{mbCaja.urlResources}/#{fld.fileName}"   title="Ver documento PDF">  
+									               <h:graphicImage width="16" height="16"  url="../resources/img/pdf_icon.png" ></h:graphicImage>
+											        #{fld.fileName}        
+											              
+									   </h:outputLink >   		             
+										                                    
+									</p:column>   						
+								
+									 
+								   <p:column headerText="Páginas"    style="text-align:left;width:75px;"  >
+										<h:outputText value="#{fld.numPages}"     />         	 
+									</p:column>  
+				 
+								</p:dataTable>				
+								</h:panelGrid>
+							
+							
+							
+							
+							</h:panelGrid>       
+							
+							
+							<h:panelGrid>  
+							
+             	   
+               <h:panelGrid    cellpadding="2" columns="2" style="text-align:left;vertical-align:bottom;width:100%;"> 
+               
+                     <h:outputText value="Código barras caja:" /> 
+                     <h:outputText  value="#{mbCaja.caja.codigoBarras}"   />               
+               
+                     <h:outputText value="Campo alfa 1" /> 
+                     <h:inputText  value="#{mbCaja.caja.alfa1}"   />
+                     
+                     <h:outputText value="Campo alfa 2" /> 
+                     <h:inputText  value="#{mbCaja.caja.alfa2}"   />
+                     
+                     <h:outputText value="Campo alfa 3" /> 
+                     <h:inputText  value="#{mbCaja.caja.alfa3}"   />
+                     
+                     <h:outputText value="Campo alfa 4" /> 
+                     <h:inputText  value="#{mbCaja.caja.alfa4}"   />
+                     
+                     <h:outputText value="Campo alfa 5" /> 
+                     <h:inputText  value="#{mbCaja.caja.alfa5}"   />
+                     
+                     <h:outputText value="Campo entero 1" />                         
+                     <p:inputNumber  value="#{mbCaja.caja.int1}"   decimalPlaces="0" thousandSeparator=""  decimalSeparator=""   />  
+                       
+                     <h:outputText value="Campo entero 2" />                         
+                     <p:inputNumber  value="#{mbCaja.caja.int2}"   decimalPlaces="0" thousandSeparator=""  decimalSeparator=""   />  
+
+                     <h:outputText value="Campo entero 3" />                         
+                     <p:inputNumber  value="#{mbCaja.caja.int3}"   decimalPlaces="0" thousandSeparator=""  decimalSeparator=""   />  
+                                                     
+                                                      
+               <h:outputText value="Campo Fecha uno" />    
+               <p:calendar     value="#{mbCaja.caja.date1}"  showOn="button"         >                  
+               </p:calendar>
+ 
+               <h:outputText value="Campo Fecha dos" />   
+               <p:calendar     value="#{mbCaja.caja.date2}"  showOn="button"        >                  
+               </p:calendar>
+               
+               
+               
+		   <h:panelGrid>
+		   
+		     <p:commandButton   value="Guardar" style="margin-right:3px;"     >
+                  <p:ajax   process="@form"   listener="#{mbCaja.guardarCaja}"   update="@form"   >
+                  </p:ajax>  
+                    
+			</p:commandButton>    
+		   
+		   
+		   </h:panelGrid>               
+ 
+ 
+ 
+               
+               </h:panelGrid>    							
+							         
+							
+							
+								<h:panelGrid  id="imgFirstPage"   cellpadding="2" columns="1" > 							      							
+								      <h:graphicImage width="700" height="650" url="#{mbCaja.selectedCarpeta.urlFileNameFP}"  ></h:graphicImage>	
+								</h:panelGrid>     
+							
+							
+							
+							</h:panelGrid>
+						
+						
+						</h:panelGrid>  						   
+                   
+ 
+             
+
+               
+               
+           
+	                          
+	                          
+ 		     
+		   </h:panelGrid>  
+		   
+
+		   
+
+ 
+</h:form>
+
+
+    <p:dialog modal="true" width="600" height="450" widgetVar="dlgSearchCaja"               
+            id="dlgSearchCaja">
+            
+		   <f:facet name="header">
+		       <h:outputText  value="Búsqueda Avanzada de Cajas"/>
+		   </f:facet>            
+            
+            <p:outputPanel id="dlgSearchCajaPanel" style="text-align:center;">
+                    <ui:include src="buscar_caja.xhtml" />      
+           </p:outputPanel>
+    </p:dialog>  
+    
+    
+    <p:dialog modal="true" width="630" height="430" widgetVar="dlgCarpetaCaja"               
+            id="dlgCarpetaCaja">
+            
+		   <f:facet name="header">
+		       <h:outputText  value="Datos de la carpeta"/>
+		   </f:facet>            
+            
+            <p:outputPanel id="dlgCarpetaCajaPanel" style="text-align:center;">
+                    <ui:include src="carpeta_caja.xhtml" />      
+           </p:outputPanel>
+    </p:dialog>      
+
+ 
+  
+  </f:view>
+  
+  
+  
+  
+  
+  
+  
+</h:body>
+</html>

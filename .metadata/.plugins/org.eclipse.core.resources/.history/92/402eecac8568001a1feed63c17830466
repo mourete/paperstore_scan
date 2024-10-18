@@ -1,0 +1,31 @@
+package com.em.proyscan.web.be.hlp;
+
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.Properties;
+
+import com.em.proyscan.web.be.app.Constants;
+
+public class HlpApp {
+	
+	public static String getURLResources() {
+		
+		String config=Constants.APP_SCAN_HOME+ "/"+ Constants.APP_PROPERTIES_FILE; 
+		System.out.println("config filename is : " + config);
+		Properties prop = new Properties();
+		InputStream inStream = new FileInputStream(config);
+		try {
+		    
+		    prop.load(inStream);
+		} finally {
+		    if (inStream != null)
+		        inStream.close();
+		}
+		String name=prop.getProperty("url_resources");
+		return name;
+		 
+	 }
+ 
+ 
+
+}

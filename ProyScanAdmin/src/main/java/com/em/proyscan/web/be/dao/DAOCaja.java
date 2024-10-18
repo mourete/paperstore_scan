@@ -1,0 +1,361 @@
+package com.em.proyscan.web.be.dao;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.sql.Types;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.em.proyscan.web.be.model.Caja;
+import com.em.proyscan.web.be.model.search.SearchCaja;
+ 
+ 
+ 
+
+@Repository( "daoCaja")
+public class DAOCaja  {
+	
+	@Autowired
+	DataSource dataSource;
+ 
+	
+	   public  Caja getCajaByCodigoBarras( String codigoBarras ){
+	        if(codigoBarras==null || codigoBarras.isEmpty() ){
+	            return null;
+	        }
+	        
+	        
+	        Caja caja=null;
+	       Connection conn=null;
+	       
+	        Statement st=null;
+	        ResultSet rs=null;
+	        try{
+	 
+	            conn= dataSource.getConnection();
+	            if(conn==null){
+	            	System.out.println("No se obtuvo la conexion a la base de datos");
+	                return null;
+	            }
+	            
+	            st=conn.createStatement();
+	            rs=st.executeQuery("select * from dbo.caja where codigo_barras='"+ codigoBarras +"'" );
+	            if(rs.next()){
+	                 caja=new Caja();
+	                 fillDatosCaja( rs , caja );
+	            }
+	            
+	            
+	        }catch(Exception e){
+	            e.printStackTrace();
+	        }finally{
+	            try{
+	               if(rs!=null){
+	                   rs.close();
+	               } 
+	                
+	               if(st!=null){
+	                   st.close();
+	               }
+	               
+	               if(conn!=null){
+	                   conn.close();
+	               }
+	                
+	            }catch(Exception e){
+	                
+	            }
+	            
+	            
+	        }
+	        
+	        return caja;
+	        
+	        
+	    }
+	   
+	   
+	   
+
+
+	   
+	    public  void save(Caja caja )  {  
+	        Connection conn=null;    
+	        CallableStatement cstmt = null;
+	        Date date=new Date();
+	        try {  
+	            conn= dataSource.getConnection();
+	            cstmt = conn.prepareCall("{call dbo.caja_save(?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+	            //cstmt.setInt(1, 5); 
+	            if( caja.getCajaOID()==null || caja.getCajaOID().isEmpty() ){
+	                cstmt.setNull(1, java.sql.Types.VARCHAR  );
+	            }else{
+	                cstmt.setString( 1 , caja.getCajaOID()  );
+	            }
+	            
+	            cstmt.setString(2, caja.getCajaName() );         
+	            cstmt.registerOutParameter(1 , java.sql.Types.VARCHAR );  
+	            cstmt.setString( 3 , caja.getCodigoBarras() );
+	             
+	             if( caja.getAlfa1()!=null ){
+	                 cstmt.setString( 4 , caja.getAlfa1() );
+	             }else {
+	                 cstmt.setNull( 4 ,  Types.VARCHAR );
+	             }
+	             
+	             if( caja.getAlfa2()!=null ){
+	                 cstmt.setString( 5 , caja.getAlfa2() );
+	             }else {
+	                 cstmt.setNull( 5 ,  Types.VARCHAR );
+	             }         
+	             
+	             if( caja.getAlfa3()!=null ){
+	                 cstmt.setString( 6 , caja.getAlfa3() );
+	             }else {
+	                 cstmt.setNull( 6 ,  Types.VARCHAR );
+	             }    
+	             
+	             if( caja.getAlfa4()!=null ){
+	                 cstmt.setString( 7 , caja.getAlfa4() );
+	             }else {
+	                 cstmt.setNull( 7 ,  Types.VARCHAR );
+	             }               
+	             
+	             if( caja.getAlfa5()!=null ){
+	                 cstmt.setString( 8 , caja.getAlfa5() );
+	             }else {
+	                 cstmt.setNull( 8 ,  Types.VARCHAR );
+	             }                    
+	             
+	            
+	             cstmt.setInt( 9 , caja.getInt1() );
+	             cstmt.setInt( 10 , caja.getInt2() );
+	             cstmt.setInt( 11 , caja.getInt3() );     
+	             
+	             if( caja.getDate1()!=null ){
+	                 cstmt.setDate( 12 ,   new java.sql.Date(caja.getDate1().getTime()  ) );
+	             }else {
+	                 cstmt.setNull( 12 ,  Types.DATE );
+	             }               
+	             
+	             if( caja.getDate2()!=null ){
+	                 cstmt.setDate( 13 ,   new java.sql.Date(caja.getDate2().getTime()  ) );
+	             }else {
+	                 cstmt.setNull( 13 ,  Types.DATE );
+	             }                 
+	             
+	            cstmt.execute();  
+	            System.out.println("MANAGER ID: " + cstmt.getString(1));  
+	            caja.setCajaOID( cstmt.getString(1) );
+	            
+	        }catch(Exception e){
+	           e.printStackTrace();
+	        }finally{
+	            try{
+	                if( cstmt!=null ){
+	                    cstmt.close();
+	                }
+	                
+	                if(conn!=null ){
+	                    conn.close();
+	                }
+	                
+	            }catch(Exception e){
+	                
+	            }
+	        }  
+	    }
+	        
+ 
+	   
+	   
+protected static synchronized void fillDatosCaja( ResultSet rs , Caja caja )throws Exception {
+	        
+            caja.setCajaName( rs.getString("caja_name") );
+            caja.setCodigoBarras( rs.getString("codigo_barras") ); 
+            caja.setCajaOID( rs.getString("caja_OID") );
+            caja.setAlfa1(rs.getString("alfa1"));
+            caja.setAlfa2(rs.getString("alfa2"));
+            caja.setAlfa3(rs.getString("alfa3"));
+            caja.setAlfa4(rs.getString("alfa4"));
+            caja.setAlfa5(rs.getString("alfa5"));
+            caja.setDate1(rs.getDate("date1"));
+            caja.setDate2(rs.getDate("date2"));
+            caja.setInt1(rs.getInt("int1"));
+            caja.setInt2(rs.getInt("int2"));
+            caja.setInt3(rs.getInt("int3"));
+    
+    
+     }	   
+	    
+
+
+
+
+public  Caja getByCarpeta(String carpetaBarCode){
+    Connection conn=null;
+    Caja caja=null;
+    Statement st=null;
+    ResultSet rs=null;
+    try{
+        
+       if(carpetaBarCode==null || carpetaBarCode.isEmpty()  ){
+           return null ;
+       } 
+       conn=dataSource.getConnection();
+        if(conn==null){
+            return null;
+        }
+        
+        st=conn.createStatement();
+        rs=st.executeQuery("    select * from dbo.caja caj " +
+         "   where  exists ( select * from carpeta carp where carp.codigo_barras='"+ carpetaBarCode +"'  and carp.caja_OID=caj.caja_OID ) " );
+        if(rs.next()){                 
+             caja=new Caja();
+             fillDatosCaja( rs , caja );           
+        }
+        
+        
+    }catch(Exception e){
+        e.printStackTrace();
+    }finally{
+        try{
+           if(rs!=null){
+               rs.close();
+           } 
+            
+           if(st!=null){
+               st.close();
+           }
+           
+           if(conn!=null){
+               conn.close();
+           }
+            
+        }catch(Exception e){
+            
+        }
+        
+        
+    }
+    
+    return caja;
+    
+}    
+
+
+
+
+public  List<Caja> search(SearchCaja searchCaja){
+	List<Caja> cajas=null;
+    Connection conn=null;
+    Caja caja=null;
+    Statement st=null;
+    ResultSet rs=null;
+    try{
+        
+ 
+       conn=dataSource.getConnection();
+        if(conn==null){
+            return null;
+        }
+        
+        st=conn.createStatement();
+        String query="    select * from dbo.caja caj " +
+         "   where caj.caja_OID is not null  " ;
+        
+        if(  searchCaja.getAlfa1()!=null && !searchCaja.getAlfa1().isEmpty() ) {
+        	query+=" and caj.alfa1 like '%" + searchCaja.getAlfa1()+ "%' ";        	
+        }
+        
+        if(  searchCaja.getAlfa2()!=null && !searchCaja.getAlfa1().isEmpty() ) {
+        	query+=" and caj.alfa2 like '%" + searchCaja.getAlfa2()+ "%' ";        	
+        }
+        
+        if(  searchCaja.getAlfa3()!=null && !searchCaja.getAlfa1().isEmpty() ) {
+        	query+=" and caj.alfa3 like '%" + searchCaja.getAlfa3()+ "%' ";        	
+        }
+        
+        if(  searchCaja.getAlfa4()!=null && !searchCaja.getAlfa1().isEmpty() ) {
+        	query+=" and caj.alfa4 like '%" + searchCaja.getAlfa4()+ "%' ";        	
+        }
+        
+        if(  searchCaja.getAlfa5()!=null && !searchCaja.getAlfa1().isEmpty() ) {
+        	query+=" and caj.alfa5 like '%" + searchCaja.getAlfa5()+ "%' ";        	
+        }
+                
+        
+        if(  searchCaja.getInt1()!=0   ) {
+        	query+=" and caj.int1=" + searchCaja.getInt1() + " ";        	
+        }
+                
+        if( searchCaja.getInt2()!=0  ) {
+        	query+=" and caj.int2=" + searchCaja.getInt2() + " ";        	
+        }
+                
+        if( searchCaja.getInt3()!=0  ) {
+        	query+=" and caj.int3=" + searchCaja.getInt3() + " ";        	
+        }
+                        
+        
+        
+        rs=st.executeQuery(query );
+ 
+        
+        while(rs.next()){   
+        	if(cajas==null) {
+        		cajas=new ArrayList<Caja>();
+        	}
+        	
+             caja=new Caja();
+             fillDatosCaja( rs , caja );     
+             cajas.add(caja);
+        }
+        
+        
+    }catch(Exception e){
+        e.printStackTrace();
+    }finally{
+        try{
+           if(rs!=null){
+               rs.close();
+           } 
+            
+           if(st!=null){
+               st.close();
+           }
+           
+           if(conn!=null){
+               conn.close();
+           }
+            
+        }catch(Exception e){
+            
+        }
+        
+        
+    }
+    
+    return cajas;
+    
+}    
+
+
+
+
+
+
+
+
+ 
+	
+
+}

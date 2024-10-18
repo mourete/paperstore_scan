@@ -1,0 +1,522 @@
+ 
+
+body {
+
+    font-size: 12px;
+     
+
+}
+
+html, body {
+  height: 100%;
+}
+
+
+
+
+.qa_full{
+  float: left;
+  width: 100%;
+  
+}
+
+
+.qa_header{
+	 height: 100%;
+	 position:fixed;
+}
+
+.qa_someid{
+	 height: 100%;
+	 position:fixed;
+	 top: 200px;
+	 
+	 
+}
+
+
+.alignTop {
+
+vertical-align: top;
+
+}
+
+
+
+
+.qapToolbar{
+	height:10px;
+	width:100%;
+	padding-left:2px;
+	padding-top:2px;
+	padding-bottom:1px;
+	margin-bottom:0px;color:#ff0000;	
+	background:#E9F4FA;
+	border-top-color: #ff00ff;
+	
+}
+
+
+.rowDataTable {
+    background: yellow  !important ;
+    height: 5px;
+    padding: 0px;
+    margin: 0;
+}
+
+.rowFormInstance {     
+    height: 26px;
+    width:  200px;
+    padding: 0px;
+    margin: 0;
+    background-color:#DCEDF8;
+    text-align:left;
+    vertical-align: top;
+    font-family: Arial;
+    font-size: 0.9em;
+  
+}
+
+
+.qaPanGridTB {		 
+	width:100%;	
+	padding-top:2px;
+	padding-bottom:2px;
+	margin-bottom:0px;
+	color:#ff0000;
+	text-align:left; 	
+}
+
+.qaBtnToolbar {
+	padding:0px;
+	margin:0px;
+	border:0px;	
+}
+
+.qaImgBtnToolbar {
+	width:25px;
+	height:25px;
+	vertical-align: middle;
+	padding:0px;
+	margin:0px;
+	border:0px;
+}
+
+.qaLinkInternNav {
+		font-family:Arial, Helvetica;
+		font-size: 1em;
+		color: #696969;
+		font-weight: bold;
+		text-decoration: none;
+		 
+		 
+}
+
+.qaTxtInternNav {
+		font-family:Arial, Helvetica;
+		font-size: 1em;
+		color: #696969;
+		 
+}
+
+
+/*
+.mydt.ui-datatable tbody td, .ui-datatable tbody td , .mydt.ui-datatable thead th {
+    padding: 0px 0px;
+    overflow: hidden;
+    border-width: 1px;
+    border-style: solid;
+     vertical-align: top;
+}
+
+ 
+
+ 
+.ui-widget-content .ui-datatable-even {
+    border: 1px solid #ffffff;
+    background: #fff;
+    color: #4f4f4f;
+}
+
+
+
+.ui-widget-content .ui-datatable-odd {
+    border: 1px solid #ffffff;
+    background: #fff;
+    color: #4f4f4f;
+} */
+
+ 
+.ui-widget-header{
+	background: #F4FAFD;
+}
+ 
+.ui-paginator .ui-paginator-top .ui-widget-header .ui-corner-top{
+    background: #F4FAFD;
+    background-color: #F4FAFD;
+ }
+ 
+ .ui-widget-header.ui-datatable .ui-widget {
+  background: #F4FAFD;
+    background-color: #F4FAFD;
+ }
+ 
+ .ui-state-default .ui-sortable-column{
+    background: #F4FAFD;
+ }
+ 
+ .ui-state-default .ui-widget-content .ui-state-default .ui-widget-header .ui-state-default{
+    background: #F4FAFD;
+ }
+ 
+ .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{
+   background: #F4FAFD;
+ }
+ 
+ .ui-state-default{
+   background: #F4FAFD;
+ }
+ 
+
+ .firstColumn {
+       width: 100px;
+  }
+  .secondColumn {
+       width: 600px;
+  }
+
+
+.noBorders tr, .noBorders td {
+    background: none !important;
+    border: none !important;
+}
+
+
+.mydt2.ui-datatable tbody td, .ui-datatable tbody td , .mydt.ui-datatable thead th {
+    padding: 2px;
+    overflow: hidden;
+    border-width: 1px;
+    border-style: solid;
+    
+    }
+
+.mydt2.ui-datatable thead th, .ui-datatable tbody td, .ui-datatable tfoot td, .ui-datatable tfoot th {
+    padding: 4px 10px;
+    overflow: hidden;
+    border-width: 0px;
+    border-style: solid;
+    
+}
+
+.mydt.ui-datatable tbody td, .ui-datatable tbody td , .mydt.ui-datatable thead th {
+    padding: 0px 0px;
+    overflow: hidden;
+    border-width: 1px;
+    border-style: solid;
+    vertical-align: top;
+    word-wrap: break-word;
+}
+
+.ui-dialog-titlebar {
+	background: #4E9ECF;	
+    color: #ffffff;
+    font-weight: bold;
+    text-shadow: none;
+}
+
+
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight{
+	text-shadow: 1px 0px 0px #333;	
+}
+
+.ui-widget-content .ui-datatable-odd{
+	border-left: 1px solid #a8a8a8;
+	border-right: 1px solid #a8a8a8;
+}
+
+.ui-widget-content .ui-datatable-even{
+	border-left: 1px solid #a8a8a8;
+	border-right: 1px solid #a8a8a8;
+}
+
+ui-chkbox-icon ui-icon ui-icon-blank ui-c{
+	background: red;
+}
+
+
+ 
+ 
+.ui-widget-header{
+	border: 1px solid #ffffff;
+} 
+
+.mydt .ui-state-default{
+	border: 1px solid #fff;
+}
+
+ .mydt .ui-chkbox-box .ui-state-default {
+     border: 4px solid #000;
+ }
+ 
+ 
+ .panelColumns td {
+    vertical-align: top; 
+} 
+
+ 
+
+ .panelColumnsVABottom td {
+    vertical-align: bottom; 
+} 
+
+ .panelColumnsToolbar td {
+    vertical-align: bottom; 
+} 
+
+
+ 
+		.my_hdr {
+			background-color: #3399cc;
+			padding-bottom: 9px;
+			height:50px;
+		}
+		.my_ftr {
+			background-color: white;
+			padding-top: 9px;
+		}
+		.my_hdr .text,
+		.my_ftr .text {
+			font-family: Roboto, Arial, Helvetica;
+			font-size: 14px;
+			color: #404040;
+			padding: 0px 0px;
+			height: 200px;
+			border: 0px solid #dfdfdf;
+		}
+		
+
+		.head_form {
+			background-color: white;			 
+			font-size: 14px;
+			font-weight: bold;
+			font-family: Arial;
+		}
+		
+		
+		.title_form {
+			background-color: white;			 
+			font-size: 12px;
+			font-weight: bold;
+			font-family: Arial;
+		}		
+
+
+.saveBtn {  width:20px; height:20px;  background-image: url('../img/save_section.png'); }
+
+
+ .qaTextHeader {
+ 		font-family:Arial, Helvetica;
+		font-size: 1.2em;
+		color: #585858;
+		font-weight: bold;
+ 
+ }
+
+
+ .qaTextLabel {
+ 		font-family:Arial, Helvetica;
+		font-size: 0.9em;
+		color: #787878;
+		font-weight: bold;
+ 
+ }
+ 
+ 
+  .qaTextInfo {
+ 		font-family:Arial, Helvetica;
+		font-size: 0.9em;
+		color: #787878;
+		font-weight: normal;
+ 
+ }
+
+
+  .qaLabelForm {
+ 		font-family:Arial, Helvetica;
+		font-size: 0.9em;		 
+		font-weight: bold;	
+		color:#616161;				
+		margin-right: 6px;
+ 
+ }
+ 
+   .qaLabelForm1 {
+ 		font-family:Arial, Helvetica;
+		font-size: 1em;		 
+		font-weight: normal;		
+		margin-right: 4px;
+ 
+ }
+ 
+ .qaLabelForm2 {
+ 		font-family:Arial, Helvetica;
+		font-size: 1.1em;		 
+		font-weight: normal;		
+		margin-right: 4px;
+ 
+ }
+ 
+  .qaLabelForm3 {
+ 		font-family:Arial, Helvetica;
+		font-size: 0.9em;		 
+		font-weight: bold;	
+		color:#8d8d8d;		
+		background-color:#e8f7fd;
+		margin-right: 6px;
+ 
+ } 
+
+.qaPanGridAlVert {
+    vertical-align: top;
+}
+
+
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active{
+	font-weight: normal;
+}
+
+
+.qa_hdr {
+			 
+			padding-bottom: 9px;
+			height:50px;			
+			background-image: url('../../resources/img/head_bar2.png'); 
+			background-repeat: repeat-x;
+			
+}
+
+
+.col40pct{
+  width:40%;
+}		 
+
+
+.col60pct{
+  width:60%;
+}
+
+.colw1{
+  width:165px;
+}		 
+
+
+
+.col10pct {
+  width:10%;
+}		 
+
+.col90pct {
+  width:90%;
+}
+
+.colw200{
+  width:200px;
+}		 
+
+.colw200LabelBackgColor{
+  width:200px;
+  font-family:Arial, Helvetica;
+  font-size: 0.9em;		 
+  font-weight: bold;	
+  color:#8d8d8d;		
+  background-color:#e8f7fd;
+  margin-right: 6px;
+  padding-left: 5px;
+}		 
+
+
+.colw100{
+  width:100px;
+}		
+
+.colwGrid{
+  text-align:left;
+}	
+
+
+.ui-corner-all {
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+} 
+
+
+
+elemento {
+
+    width: 550px;
+    height: auto;
+    visibility: visible;
+    left: 99.8333px;
+    top: 23.6167px;
+    z-index: 1004;
+    display: block;
+
+}
+.ui-dialog {
+
+    position: fixed;
+    padding: 0;
+    overflow: hidden;
+    display: none;
+
+}
+.ui-resizable {
+
+    position: relative;
+
+}
+.ui-shadow {
+
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow:none;
+
+}
+
+.ui-widget-content {
+    border: none ;
+}
+
+
+ .column300blue {
+       width: 300px;
+       background-color:#e8f7fd;
+  }
+
+ .column200blue {
+       width: 200px;
+       background-color:#e8f7fd;
+  }
+  
+  .column500 {
+       width: 500px;
+  }
+
+
+
+
+.mydt3.ui-datatable tbody td, .ui-datatable tbody td ,  thead th {
+    padding: 2px;
+    overflow: hidden;
+    border-width: 0px;
+    border-style: solid;
+    
+    }
+ 
+
+ .column20 {
+       width: 20px;
+  }
+
+

@@ -1,0 +1,192 @@
+package com.em.proyscan.web.mb;
+
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
+
+import org.primefaces.PrimeFaces;
+
+import com.em.proyscan.web.be.app.Constants;
+import com.em.proyscan.web.be.model.Caja;
+import com.em.proyscan.web.be.model.Carpeta;
+import com.em.proyscan.web.be.service.SRVCaja;
+import com.em.proyscan.web.be.service.SRVCarpeta;
+
+@ManagedBean (name="mbCaja")
+@ViewScoped
+public class MBCaja {
+	
+	String codigoBarras;
+	Caja searchCaja;
+	Caja caja;
+	Carpeta selectedCarpeta;
+	Carpeta carpeta;
+	String urlResources;
+	String message;
+	String error;
+	
+	@ManagedProperty("#{srvCaja}")
+	private SRVCaja srvCaja;
+	
+	@ManagedProperty("#{srvCarpeta}")
+	private SRVCarpeta srvCarpeta;	
+	
+	
+	@PostConstruct
+	public void init  (){
+		System.out.println("Init MBNavigation ....."); 		 
+		searchCaja=new Caja();
+		this.urlResources=Constants.URL_RESOURCES;
+	 
+	}		
+	
+	
+  public void	searchByCodigo() {
+	  if(this.codigoBarras==null) {
+		  this.message="Favor de proporcionar el codigo de barras de la caja o carpeta";
+		  return;
+	  }
+	  
+ 	  
+	  this.caja=this.srvCaja.getCajaByCodigoBarras(codigoBarras);
+	  if( this.caja==null  ) {
+		  this.caja=this.srvCaja.getByCarpeta(codigoBarras);		  
+	  } 
+	  
+	  if( caja!=null ) {		
+		  this.message=null;
+		  List<Carpeta> lstCarpetas=this.srvCarpeta.getCarpetasByCaja(caja.getCajaOID());
+		  caja.setCarpetas(lstCarpetas);	
+		  if(lstCarpetas!=null&& lstCarpetas.size()>0) {
+			  for( Carpeta  carp : lstCarpetas  ) {
+				  carp.setUrlFileNameFP( this.urlResources+ carp.getFileNameFP().trim()  );
+			  }
+			  			  			  
+			  this.selectedCarpeta=lstCarpetas.get(0);
+			  
+		  }
+		  
+	  }else {
+		  this.message="No se encontro la caja";
+	  }
+	  
+	  
+ 
+ 			  
+	  
+  }
+  
+  public void guardarCarpeta() {
+	  if( this.carpeta==null ) {
+		  return;
+	  }
+	  
+	  this.srvCarpeta.save(carpeta);	 
+	  PrimeFaces.current().executeScript("PF('dlgCarpetaCaja').hide()");
+  }
+
+  public void refreshCarepta() {
+	  System.out.println("refresh carpeta :" + this.selectedCarpeta.getCodigoBarras() );
+  }
+ 
+  public void editCarpeta(Carpeta fld) {
+	  this.selectedCarpeta=fld;
+	  this.carpeta=fld;
+	 	  
+  }
+  
+  public void guardarCaja() {
+	  this.srvCaja.save(caja);
+	  
+  }
+
+public String getCodigoBarras() {
+	return codigoBarras;
+}
+
+
+public void setCodigoBarras(String codigoBarras) {
+	this.codigoBarras = codigoBarras;
+}
+
+
+public Caja getSearchCaja() {
+	return searchCaja;
+}
+
+
+public void setSearchCaja(Caja searchCaja) {
+	this.searchCaja = searchCaja;
+}
+
+
+public SRVCaja getSrvCaja() {
+	return srvCaja;
+}
+
+
+public void setSrvCaja(SRVCaja srvCaja) {
+	this.srvCaja = srvCaja;
+}
+
+
+public Caja getCaja() {
+	return caja;
+}
+
+
+public void setCaja(Caja caja) {
+	this.caja = caja;
+}
+
+
+public SRVCarpeta getSrvCarpeta() {
+	return srvCarpeta;
+}
+
+
+public void setSrvCarpeta(SRVCarpeta srvCarpeta) {
+	this.srvCarpeta = srvCarpeta;
+}
+
+
+public Carpeta getSelectedCarpeta() {
+	return selectedCarpeta;
+}
+
+
+public void setSelectedCarpeta(Carpeta selectedCarpeta) {
+	this.selectedCarpeta = selectedCarpeta;
+}
+
+
+public Carpeta getCarpeta() {
+	return carpeta;
+}
+
+
+public void setCarpeta(Carpeta carpeta) {
+	this.carpeta = carpeta;
+}
+
+
+public String getUrlResources() {
+	return urlResources;
+}
+
+
+public void setUrlResources(String urlResources) {
+	this.urlResources = urlResources;
+}
+	
+
+
+
+
+
+	
+
+}

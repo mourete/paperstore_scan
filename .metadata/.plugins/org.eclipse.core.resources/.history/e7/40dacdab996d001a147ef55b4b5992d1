@@ -1,0 +1,55 @@
+package com.em.proyscan.web.be.spring;
+
+import java.util.Properties;
+
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+
+import com.em.proyscan.web.be.app.Constants;
+ 
+ 
+
+@Configuration
+//@PropertySource("classpath:jdbc.properties")
+@PropertySource("file:C:/AppScan/config/jdbc.properties")
+ 
+public class AppContext {
+
+    @Autowired
+    private Environment env;
+    
+    
+    @Bean
+    public DataSource dataSource() {
+    	Constants d;
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();                                    
+        dataSource.setDriverClassName( env.getProperty("jdbc.driverClassName"));        
+        dataSource.setUrl( env.getProperty("jdbc.url"));
+        dataSource.setUsername(env.getProperty("jdbc.username"));
+        dataSource.setPassword(env.getProperty("jdbc.password"));
+        return dataSource;
+    }    
+    
+ 
+
+    /*Si jala bien
+    @Bean
+    public DataSource dataSource() {
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();                                    
+        dataSource.setDriverClassName( "com.microsoft.sqlserver.jdbc.SQLServerDriver");        
+        dataSource.setUrl( "jdbc:sqlserver://DESKTOP-3G4J6V6:1433;DatabaseName=bd_activos;");
+        dataSource.setUsername("sa");
+        dataSource.setPassword("123456");
+        return dataSource;
+    } */
+ 
+ 
+}
